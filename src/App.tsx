@@ -10,7 +10,7 @@ function App() {
     liff.init({liffId: process.env.REACT_APP_LIFF_ID as string}) // LIFF IDをセットする
       .then(() => {
       
-        const message = [
+        const message: any = [
           {
             "type": "flex",
             "altText": "ようこそ",
@@ -30,11 +30,11 @@ function App() {
                     "layout": "vertical",
                     "contents": [
                       {
-                            "type": "postback",
-                            "label": "返信完了",
-                            "data": "{\"scenario_id\":1,\"next_id\":\"MemberUpdateCompleted\",\"current_id\":\"A1\",\"type\":\"MemberUpdateCompleted\"}",
-                            "displayText": "返信完了"
-                        }
+                          "type": "postback",
+                          "label": "返信完了",
+                          "data": "{\"scenario_id\":1,\"next_id\":\"MemberUpdateCompleted\",\"current_id\":\"A1\",\"type\":\"MemberUpdateCompleted\"}",
+                          "displayText": "返信完了"
+                      }
                     ]
                   }
                 }
