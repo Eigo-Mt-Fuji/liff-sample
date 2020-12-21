@@ -9,13 +9,44 @@ function App() {
   const sendMessage = () => {
     liff.init({liffId: process.env.REACT_APP_LIFF_ID as string}) // LIFF IDをセットする
       .then(() => {
+      
+        const message = [
+          {
+            "type": "flex",
+            "altText": "ようこそ",
+            "contents":{
+              "type": "carousel",
+              "contents": [
+                {
+                  "type": "bubble",
+                  "direction": "ltr",
+                  "styles": {
+                    "body": {
+                      "backgroundColor": "#f5f5f5"
+                    }
+                  },
+                  "body": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                      {
+                            "type": "postback",
+                            "label": "返信完了",
+                            "data": "{\"scenario_id\":1,\"next_id\":\"MemberUpdateCompleted\",\"current_id\":\"A1\",\"type\":\"MemberUpdateCompleted\"}",
+                            "displayText": "返信完了"
+                        }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ];
+
         if (!liff.isLoggedIn()) {
           liff.login({}) // ログインしていなければ最初にログインする
         } else if (liff.isInClient()) { // LIFFので動いているのであれば
-          liff.sendMessages([{ // メッセージを送信する
-            'type': 'text',
-            'text': "You've successfully sent a message! Hooray!"
-          }]).then(function() {
+          liff.sendMessages(message).then(function() {
             window.alert('Message sent');
           }).catch(function(error) {
             window.alert('Error sending message: ' + error);
